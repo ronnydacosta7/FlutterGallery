@@ -19,8 +19,8 @@
  5. Click FlutterGaller > scr > test > java > features > choose one of the features that want to run > click right > run feature '......'
  ![running feature](https://i.ibb.co/nkTrQcy/running-feature.jpg)
  
- ## assumption
- - feature that I create
+ ## Assumption
+ - Feature that I created
  1. Adding item to shopping cart
  2. Clear shopping cart
  3. remove shopping cart
