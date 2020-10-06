@@ -1,12 +1,12 @@
 # FlutterGallery 
 ## Enviroment
 - Android Studio Emulator, Device name: Pixel 3A API 28
-- Languange : java
+- Languange : Java
 - IDE: Intellij, install cucumber plugin (file > settings > plugin)
 ![plugin](https://i.ibb.co/PxJDJFF/cucumber-plugin.png)
-- java version "1.8.0_111", Java(TM) SE Runtime Environment (build 1.8.0_111-b14), Java HotSpot(TM) 64-Bit Server VM (build 25.111-b14, mixed mode)
-- appium 1.17.0
-- cucumber 6.0.8
+- Java version "1.8.0_111", Java(TM) SE Runtime Environment (build 1.8.0_111-b14), Java HotSpot(TM) 64-Bit Server VM (build 25.111-b14, mixed mode)
+- Appium 1.17.0
+- Cucumber 6.0.8
  
  ## How to run the script?
  1. Open Appium Desktop
@@ -15,7 +15,7 @@
  ![appium](https://i.ibb.co/Z1Z9bTN/appium.png)
  
  3. Open Android emulator and install the flutter Gallery Apk
- 4. Open the IDE
+ 4. Open the IDE (i use intellij)
  5. Click FlutterGaller > scr > test > java > features > choose one of the features that want to run > click right > run feature '......'
  ![running feature](https://i.ibb.co/nkTrQcy/running-feature.jpg)
  
