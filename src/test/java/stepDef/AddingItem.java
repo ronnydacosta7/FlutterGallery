@@ -21,6 +21,11 @@ public class AddingItem {
     String seaTunic = "//android.widget.Button[contains(@content-desc,'Sea tunic')]";
     String stellaSunglasses = "//android.widget.Button[contains(@content-desc,'Stella sunglasses')]";
 
+    String total = "//android.view.View[contains(@content-desc,'TOTAL')]";
+    String subtotal="//android.view.View[contains(@content-desc,'Subtotal')]";
+    String shipping ="//android.view.View[contains(@content-desc,'Shipping')]";
+    String tax = "//android.view.View[contains(@content-desc,'Tax')]";
+
 
     @Given("User open the Shire Gallery")
     public void user_open_the_shire_gallery() {
@@ -74,6 +79,8 @@ public class AddingItem {
     @Then("the item sea tunic add to shopping card")
     public void the_item_sea_tunic_add_to_shopping_card() {
        mainFunc.click(shoppingCard);
+
+       Assert.assertTrue(mainFunc.checkTotalShoppingCart(total,subtotal,shipping,tax));
        Assert.assertTrue(mainFunc.isElementDisplayed(seaTunic));
     }
 
@@ -82,5 +89,6 @@ public class AddingItem {
         mainFunc.click(shoppingCard);
         Assert.assertTrue(mainFunc.isElementDisplayed(seaTunic));
         Assert.assertTrue(mainFunc.isElementDisplayed(stellaSunglasses));
+        Assert.assertTrue(mainFunc.checkTotalShoppingCart(total,subtotal,shipping,tax));
     }
 }
