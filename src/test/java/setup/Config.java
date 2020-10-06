@@ -1,13 +1,15 @@
+package setup;
+
 import java.net.URL;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.cucumber.java.Before;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 public class Config {
     public static AndroidDriver<MobileElement> driver;
-    @BeforeTest
     public void setup(){
         try {
             DesiredCapabilities caps = new DesiredCapabilities();
@@ -26,9 +28,7 @@ public class Config {
             exp.printStackTrace();
         }
     }
-
-    @AfterTest
-    public void teardown(){
+    public void tearDown(){
         driver.quit();
     }
 }
