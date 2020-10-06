@@ -4,8 +4,8 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
 import io.cucumber.messages.internal.com.google.common.collect.ImmutableMap;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.annotations.BeforeTest;
 import setup.Config;
 
 import java.util.concurrent.TimeUnit;
@@ -31,6 +31,20 @@ public class MainFunc extends Config {
 
         while (isElementDisplayed(id) == false) {
             touchAction.longPress(PointOption.point(start, y)).moveTo(PointOption.point(moveTo, y)).release().perform();
+        }
+    }
+
+    public void swipeOnHalfScreenUntilFindElement(String id) {
+        TouchAction touchAction = new TouchAction(driver);
+        Dimension dim = driver.manage().window().getSize();
+        int height = dim.getHeight();
+        int widht = dim.getWidth();
+        int y = (int) (height * 0.5);
+        int startX = (int) (widht * 0.7);
+        int moveTo = 20;
+
+        while(isElementDisplayed(id) == false){
+            touchAction.longPress(PointOption.point(startX, y)).moveTo(PointOption.point(moveTo, y)).release().perform();
         }
     }
 
@@ -69,6 +83,44 @@ public class MainFunc extends Config {
             return driver.findElementByXPath(string);
         }
         return driver.findElementByAccessibilityId(string);
+    }
+
+    public String getTextContentDesc(String id){
+        MobileElement element = findElementByIdOrXpath(id);
+        return element.getAttribute("content-desc");
+    }
+
+    public double convertStringToDouble(String id){
+        String temp = id.substring(id.lastIndexOf("$")+1);
+        double result = Double.parseDouble(temp);
+        return result;
+    }
+
+    public double calculatedTotal(int subtotal, int shipping, int tax){
+        return subtotal + shipping + tax;
+    }
+
+    public boolean checkTotalShoppingCart(String xPathTotal, String xPathSubTotal, String xpathShipping, String xpathTax){
+        String textTotal = getTextContentDesc(xPathTotal);
+        String textSubTotal = getTextContentDesc(xPathSubTotal);
+        String textShipping = getTextContentDesc(xpathShipping);
+        String textTax = getTextContentDesc(xpathTax);
+
+        double total = convertStringToDouble(textTotal);
+        double subTotal = convertStringToDouble(textSubTotal);
+        double shipping = convertStringToDouble(textShipping);
+        double tax = convertStringToDouble(textTax);
+
+        double temptTotal = subTotal + shipping + tax;
+        System.out.println("Total : "+total+"tempt : "+temptTotal);
+        if (temptTotal == total)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
 
 }
