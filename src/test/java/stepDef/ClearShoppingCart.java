@@ -2,6 +2,7 @@ package stepDef;
 
 import helper.MainFunc;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 public class ClearShoppingCart {
@@ -11,7 +12,7 @@ public class ClearShoppingCart {
     String seaTunic = "//android.widget.Button[contains(@content-desc,'Sea tunic')]";
     String shoppingCard = "//android.widget.Button[contains(@content-desc,'Shopping cart')]";
 
-    @Then("click clear cart")
+    @When("click clear cart")
     public void click_clear_cart() {
         mainFunc.click(clear);
     }
