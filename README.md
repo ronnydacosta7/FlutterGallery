@@ -28,7 +28,7 @@
 - There is a case when I choose one of the filter and I want to select one of the item then the element is not exist, to solve the problem I create a function for refresh the screen by click the icon menu twice.
 - when I add, clear and also remove the item from shopping cart I created 2 validation: 
 1. First validate the item using view button using xpath
-2. Second validate the item from Total shopping cart, i get the atribute from the xpath content-desc, after that i substring the text and convert data type to double and then i compare the data 
+2. Second validate the item from Total shopping cart, i get the atribute from the xpath content-desc, after that i substring the text and convert the data type to double and then i compare the data 
   
  
  
