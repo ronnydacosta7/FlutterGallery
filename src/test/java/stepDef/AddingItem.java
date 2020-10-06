@@ -74,7 +74,6 @@ public class AddingItem {
     @Then("the item sea tunic add to shopping card")
     public void the_item_sea_tunic_add_to_shopping_card() {
        mainFunc.click(shoppingCard);
-
        Assert.assertTrue(mainFunc.isElementDisplayed(seaTunic));
     }
 
