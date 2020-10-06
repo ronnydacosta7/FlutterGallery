@@ -15,18 +15,11 @@ public class MainFunc extends Config {
     String openMenu = "Open menu";
     String closeMenu = "Close menu";
 
-    public void clickElementById(String id) {
+    public void click(String id) {
         Actions action = new Actions(driver);
-        MobileElement form = driver.findElementByAccessibilityId(id);
+        MobileElement element  = findElementByIdOrXpath(id);
         driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
-        action.click(form).perform();
-    }
-
-    public void clickElementByXpath(String xPath) {
-        Actions action = new Actions(driver);
-        MobileElement form = driver.findElementByXPath(xPath);
-        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
-        action.click(form).perform();
+        action.click(element).perform();
     }
 
     public void swipeLeftUntilFindElement(MobileElement elmnt, String id) {
@@ -36,28 +29,20 @@ public class MainFunc extends Config {
         int end = elmnt.getSize().getWidth(); //
         int start = (int) (end * 0.7);
 
-        while (isElementDisplayedById(id) == false) {
+        while (isElementDisplayed(id) == false) {
             touchAction.longPress(PointOption.point(start, y)).moveTo(PointOption.point(moveTo, y)).release().perform();
         }
     }
 
-    public boolean isElementDisplayedById(String a){
+    public boolean isElementDisplayed(String id){
         try{
-            return driver.findElementByAccessibilityId(a).isDisplayed();
+            return findElementByIdOrXpath(id).isDisplayed();
         }catch(Exception e){
             return false;
         }
     }
 
-    public boolean isElementDisplayedByXpath(String a){
-        try{
-            return driver.findElementByXPath(a).isDisplayed();
-        }catch(Exception e){
-            return false;
-        }
-    }
-
-    public void input(String element, String text) throws InterruptedException {
+    public void inputText(String element, String text) throws InterruptedException {
         Actions action = new Actions(driver);
         MobileElement form = (MobileElement) driver.findElementByXPath(element);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -75,8 +60,15 @@ public class MainFunc extends Config {
     }
 
     public void refreshElement(){
-        clickElementById(openMenu);
-        clickElementById(closeMenu);
+        click(openMenu);
+        click(closeMenu);
+    }
+
+    public MobileElement findElementByIdOrXpath(String string){
+        if(string.contains("//")){
+            return driver.findElementByXPath(string);
+        }
+        return driver.findElementByAccessibilityId(string);
     }
 
 }
